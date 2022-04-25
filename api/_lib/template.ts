@@ -38,14 +38,14 @@ function getCss(theme: string) {
         src: url(data:font/woff2;charset=utf-8;base64,${mono})  format("woff2");
       }
 
-    body {
+      body {
         background: ${background};
         height: 100vh;
         width: 100vw;
         display: flex;
-        text-align: center;
+        text-align: left;
         align-items: center;
-        justify-content: center;
+        justify-content: left;
     }
 
     code {
@@ -62,13 +62,13 @@ function getCss(theme: string) {
     .logo-wrapper {
         display: flex;
         align-items: center;
-        align-content: center;
-        justify-content: center;
-        justify-items: center;
+        align-content: left;
+        justify-content: left;
+        justify-items: left;
     }
 
     .spacer {
-        margin: 150px;
+        margin: 150px 100px;
     }
 
     p {
