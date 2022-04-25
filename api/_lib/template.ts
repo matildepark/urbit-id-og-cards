@@ -1,8 +1,8 @@
 
 import { readFileSync } from 'fs';
 import { ParsedRequest } from './types';
-import sigilString from './sigil';
-import ob from 'urbit-ob';
+// import sigilString from './sigil';
+// import ob from 'urbit-ob';
 
 const rglr = readFileSync(`${__dirname}/../_fonts/Inter-Regular.woff2`).toString('base64');
 const bold = readFileSync(`${__dirname}/../_fonts/Inter-Bold.woff2`).toString('base64');
@@ -43,9 +43,9 @@ function getCss(theme: string) {
         height: 100vh;
         width: 100vw;
         display: flex;
-        text-align: center;
+        text-align: left;
         align-items: center;
-        justify-content: center;
+        justify-content: left;
     }
 
     code {
@@ -62,13 +62,13 @@ function getCss(theme: string) {
     .logo-wrapper {
         display: flex;
         align-items: center;
-        align-content: center;
-        justify-content: center;
-        justify-items: center;
+        align-content: left;
+        justify-content: left;
+        justify-items: left;
     }
 
     .spacer {
-        margin: 150px;
+        margin: 150px 50px;
     }
 
     p {
@@ -86,9 +86,10 @@ function getCss(theme: string) {
     }`;
 }
 
+
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme } = parsedReq;
-    const patp = ob.isValidPatp(`~${text}`) ? `~${text}` : "~zod";
+    const { text, images, theme } = parsedReq;
+    // const patp = ob.isValidPatp(`~${text}`) ? `~${text}` : "~zod";
     return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
@@ -101,10 +102,12 @@ export function getHtml(parsedReq: ParsedRequest) {
         <div>
             <div class="spacer">
             <div class="logo-wrapper">
-            ${sigilString(patp, 250)}
+            <div style="border-radius: 1rem; overflow: hidden;">
+                <img src=${images[0]} height="250" width="250" style="object-fit:contain;"/>
+            </div>
             <div style="display: flex; flex-direction: column; align-items: left; text-align: left; margin-left: 2rem;">
-            <p class="heading">${patp}</p>
-            <p>Urbit ID</p>
+            <p class="heading">${text}</p>
+            <p>Urbit Group</p>
             </div>
             </div>
             <div class="spacer">
