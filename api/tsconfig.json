@@ -8,6 +8,7 @@
         "sourceMap": true,
         "strict": true,
         "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": false,
         "noImplicitReturns": true,
         "noEmitOnError": true,
         "noUnusedLocals": true,
