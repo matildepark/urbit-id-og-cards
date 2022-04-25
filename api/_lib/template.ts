@@ -68,7 +68,7 @@ function getCss(theme: string) {
     }
 
     .spacer {
-        margin: 150px 50px;
+        margin: 150px 100px;
     }
 
     p {
