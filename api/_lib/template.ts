@@ -107,7 +107,7 @@ export function getHtml(parsedReq: ParsedRequest) {
             </div>
             <div style="display: flex; flex-direction: column; align-items: left; text-align: left; margin-left: 2rem;">
             <p class="heading">${text}</p>
-            <p>Urbit Group</p>
+            <p>Urbit Application</p>
             </div>
             </div>
             <div class="spacer">
