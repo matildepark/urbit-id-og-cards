@@ -54,6 +54,7 @@ function getCss(theme: string) {
         white-space: pre-wrap;
         letter-spacing: -5px;
     }
+    img[src=undefined] { opacity: 0; }
 
     code:before, code:after {
         content: '\`';
@@ -101,7 +102,7 @@ export function getHtml(parsedReq: ParsedRequest) {
         <div>
             <div class="spacer">
             <div class="logo-wrapper">
-            <div style="border-radius: 1rem; overflow: hidden; background-color:${color}">
+            <div style="border-radius: 1rem; border-color: transparent; overflow: hidden; background-color:${color}">
                 <img src=${images[0]} height="250" width="250" style="object-fit:contain;"/>
             </div>
             <div style="display: flex; flex-direction: column; align-items: left; text-align: left; margin-left: 2rem;">
