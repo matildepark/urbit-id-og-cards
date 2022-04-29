@@ -6,7 +6,7 @@ import ob from 'urbit-ob';
 
 const rglr = readFileSync(`${__dirname}/../_fonts/Inter-Regular.woff2`).toString('base64');
 const bold = readFileSync(`${__dirname}/../_fonts/Inter-Bold.woff2`).toString('base64');
-const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString('base64');
+const mono = readFileSync(`${__dirname}/../_fonts/scp.woff2`).toString('base64');
 
 function getCss(theme: string) {
     let background = 'white';
@@ -32,7 +32,7 @@ function getCss(theme: string) {
     }
 
     @font-face {
-        font-family: 'Vera';
+        font-family: 'Source Code Pro';
         font-style: normal;
         font-weight: normal;
         src: url(data:font/woff2;charset=utf-8;base64,${mono})  format("woff2");
@@ -48,11 +48,10 @@ function getCss(theme: string) {
         justify-content: left;
     }
 
-    code {
-        color: #D400FF;
-        font-family: 'Vera';
+    code, .mono {
+        color: #000000;
+        font-family: 'Source Code Pro';
         white-space: pre-wrap;
-        letter-spacing: -5px;
     }
 
     code:before, code:after {
@@ -87,7 +86,7 @@ function getCss(theme: string) {
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme } = parsedReq;
+    const { text, theme, color, nickname, images } = parsedReq;
     const patp = ob.isValidPatp(`~${text}`) ? `~${text}` : "~zod";
     return `<!DOCTYPE html>
 <html>
@@ -101,9 +100,10 @@ export function getHtml(parsedReq: ParsedRequest) {
         <div>
             <div class="spacer">
             <div class="logo-wrapper">
-            ${sigilString(patp, 250)}
+            ${images[0] ? `<div style="border-radius:0.75rem;overflow:hidden;"><img src=${images[0]} style="height:250px;width:250px;object-fit:contain;"/></div>` : sigilString(patp, 250, color)}
             <div style="display: flex; flex-direction: column; align-items: left; text-align: left; margin-left: 2rem;">
-            <p class="heading">${patp}</p>
+            ${nickname ? `<p class="heading">${nickname}</p>` : null}
+            <p class="${nickname ? "mono" : "heading"}">${patp}</p>
             <p>Urbit ID</p>
             </div>
             </div>
