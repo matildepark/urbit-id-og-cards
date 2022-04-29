@@ -102,7 +102,7 @@ export function getHtml(parsedReq: ParsedRequest) {
             <div class="logo-wrapper">
             ${images[0] ? `<div style="border-radius:0.75rem;overflow:hidden;"><img src=${images[0]} style="height:250px;width:250px;object-fit:contain;"/></div>` : sigilString(patp, 250, color)}
             <div style="display: flex; flex-direction: column; align-items: left; text-align: left; margin-left: 2rem;">
-            ${nickname ? `<p class="heading">${nickname}</p>` : null}
+            ${nickname && `<p class="heading">${nickname}</p>`}
             <p class="${nickname ? "mono" : "heading"}">${patp}</p>
             <p>Urbit ID</p>
             </div>
