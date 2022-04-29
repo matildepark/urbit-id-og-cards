@@ -1,11 +1,11 @@
 import { IncomingMessage } from 'http';
 import { parse } from 'url';
-import { ParsedRequest, Theme } from './types';
+import { ParsedRequest } from './types';
 
 export function parseRequest(req: IncomingMessage) {
     console.log('HTTP ' + req.url);
     const { pathname, query } = parse(req.url || '/', true);
-    const { fontSize, images, widths, heights, theme, md } = (query || {});
+    const { fontSize, images, color, widths, heights, theme, md } = (query || {});
 
     if (Array.isArray(fontSize)) {
         throw new Error('Expected a single fontSize');
@@ -32,11 +32,13 @@ export function parseRequest(req: IncomingMessage) {
         theme: theme === 'dark' ? 'dark' : 'light',
         md: md === '1' || md === 'true',
         fontSize: fontSize || '96px',
+        // @ts-ignore
+        color: color || "",
         images: getArray(images),
         widths: getArray(widths),
         heights: getArray(heights),
     };
-    parsedRequest.images = getDefaultImages(parsedRequest.images, parsedRequest.theme);
+    parsedRequest.images = getDefaultImages(parsedRequest.images);
     return parsedRequest;
 }
 
@@ -50,13 +52,6 @@ function getArray(stringOrArray: string[] | string | undefined): string[] {
     }
 }
 
-function getDefaultImages(images: string[], theme: Theme): string[] {
-    const defaultImage = theme === 'light'
-        ? 'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-black.svg'
-        : 'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-white.svg';
-
-    if (!images || !images[0]) {
-        return [defaultImage];
-    }
+function getDefaultImages(images: string[]): string[] {
     return images;
 }

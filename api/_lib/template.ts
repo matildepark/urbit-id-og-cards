@@ -88,8 +88,7 @@ function getCss(theme: string) {
 
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, images, theme } = parsedReq;
-    // const patp = ob.isValidPatp(`~${text}`) ? `~${text}` : "~zod";
+    const { text, images, color = "#000000", theme } = parsedReq;
     return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
@@ -102,7 +101,7 @@ export function getHtml(parsedReq: ParsedRequest) {
         <div>
             <div class="spacer">
             <div class="logo-wrapper">
-            <div style="border-radius: 1rem; overflow: hidden;">
+            <div style="border-radius: 1rem; overflow: hidden; background-color:${color}">
                 <img src=${images[0]} height="250" width="250" style="object-fit:contain;"/>
             </div>
             <div style="display: flex; flex-direction: column; align-items: left; text-align: left; margin-left: 2rem;">
