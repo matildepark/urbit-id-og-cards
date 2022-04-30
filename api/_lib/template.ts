@@ -59,6 +59,8 @@ function getCss(theme: string) {
         content: '\`';
     }
 
+    IMG[src=undefined] {opacity: 0;}
+
     .logo-wrapper {
         display: flex;
         align-items: center;
@@ -88,7 +90,7 @@ function getCss(theme: string) {
 
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, images, theme } = parsedReq;
+    const { text, images, color, theme } = parsedReq;
     // const patp = ob.isValidPatp(`~${text}`) ? `~${text}` : "~zod";
     return `<!DOCTYPE html>
 <html>
@@ -102,7 +104,7 @@ export function getHtml(parsedReq: ParsedRequest) {
         <div>
             <div class="spacer">
             <div class="logo-wrapper">
-            <div style="border-radius: 1rem; overflow: hidden;">
+            <div style="border-radius: 1rem; overflow: hidden; background-color:${color || 'rgba(0,0,0,0)'}">
                 <img src=${images[0]} height="250" width="250" style="object-fit:contain;"/>
             </div>
             <div style="display: flex; flex-direction: column; align-items: left; text-align: left; margin-left: 2rem;">
